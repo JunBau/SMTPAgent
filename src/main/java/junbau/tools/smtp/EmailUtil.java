@@ -25,7 +25,7 @@ public class EmailUtil {
         return mailStatus;
     }
 
-    public static void setMailStatus(String mailStatus) {
+    private static void setMailStatus(String mailStatus) {
         EmailUtil.mailStatus = mailStatus;
     }
 
