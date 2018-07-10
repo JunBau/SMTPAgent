@@ -12,6 +12,8 @@ import java.util.Date;
 
 public class EmailUtil {
 
+    // Code by JunBau
+
     private static String mailStatus;
     private static boolean mailFromSpoof = false;
 
