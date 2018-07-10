@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="456.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="junbau.tools.ui.MUAController">
+   <children>
+      <TabPane prefHeight="676.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="usrConf" text="Settings">
+               <content>
+                  <AnchorPane maxHeight="-Infinity" prefHeight="469.0" prefWidth="780.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="SMTP Host:" />
+                        <Label layoutX="14.0" layoutY="47.0" text="Mail From (P1 Address):" />
+                        <Label layoutX="14.0" layoutY="80.0" text="From (P2 Address):" />
+                        <TextField fx:id="smtpHost" layoutX="94.0" layoutY="9.0" prefHeight="27.0" prefWidth="669.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="usrMailFrom" layoutX="169.0" layoutY="42.0" prefHeight="27.0" prefWidth="594.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="usrP2" layoutX="140.0" layoutY="75.0" prefHeight="27.0" prefWidth="508.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="132.0" />
+                        <CheckBox fx:id="spoofS2" layoutX="657.0" layoutY="80.0" mnemonicParsing="false" text="Spoof style 2" AnchorPane.rightAnchor="18.0" />
+                        <TextField fx:id="usrReplyTo" layoutX="128.0" layoutY="108.0" prefHeight="27.0" prefWidth="635.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="17.0" />
+                        <Label layoutX="18.0" layoutY="376.0" text="Password (SMTP Auth):" />
+                        <TextField fx:id="smtpAuthAcc" layoutX="171.0" layoutY="339.0" prefHeight="27.0" prefWidth="591.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="18.0" />
+                        <PasswordField fx:id="usrPass" layoutX="170.0" layoutY="371.0" prefHeight="27.0" prefWidth="407.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="203.0" />
+                        <CheckBox fx:id="smtpAuth" layoutX="585.0" layoutY="376.0" mnemonicParsing="false" text="Use SMTP Authentication" AnchorPane.rightAnchor="14.0" />
+                        <Label layoutX="14.0" layoutY="114.0" text="Reply to address:" />
+                        <Label layoutX="18.0" layoutY="344.0" text="Authentication account:" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab fx:id="usrMua" text="Mail Agent">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="usrMsgTo" layoutX="83.0" layoutY="11.0" prefHeight="27.0" prefWidth="600.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="97.0" />
+                        <TextField fx:id="usrMsgCc" layoutX="83.0" layoutY="43.0" prefHeight="27.0" prefWidth="600.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="97.0" />
+                        <TextField fx:id="usrMsgSubj" layoutX="83.0" layoutY="75.0" prefHeight="27.0" prefWidth="600.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="97.0" />
+                        <AnchorPane layoutX="20.0" layoutY="112.0" prefHeight="268.0" prefWidth="741.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="112.0">
+                           <children>
+                              <TabPane prefHeight="296.0" prefWidth="741.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <tabs>
+                                  <Tab text="Plain Text">
+                                       <content>
+                                          <TextArea fx:id="usrMsgBody" prefHeight="279.0" prefWidth="587.0" />
+                                       </content>
+                                    </Tab>
+                                  <Tab text="HTML">
+                                       <content>
+                                          <HTMLEditor fx:id="msgHTML" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="200.0" prefWidth="506.0" />
+                                       </content>
+                                    </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="usrMsgSend" layoutX="689.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#btnSend" prefHeight="92.0" prefWidth="72.0" text="Send" AnchorPane.rightAnchor="19.0" />
+                        <Label layoutX="20.0" layoutY="16.0" text="To:" />
+                        <Label layoutX="20.0" layoutY="48.0" text="Cc:" />
+                        <Label layoutX="20.0" layoutY="80.0" text="Subject:" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>
