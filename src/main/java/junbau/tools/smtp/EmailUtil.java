@@ -25,11 +25,8 @@ public class EmailUtil {
         return mailStatus;
     }
 
-    private static void setMailStatus(String mailStatus) {
-        EmailUtil.mailStatus = mailStatus;
-    }
-
-    public void sendEmail(Session session, String toEmail, String subject, String body, String htmlBody) {
+    public void sendEmail(String toEmail, String headerAddress, String fromAddress, String replyTo,
+                          String ccField, String subject, String body, String htmlBody, Session session) {
         try
         {
             MimeMessage msg = new MimeMessage(session);
@@ -46,6 +43,8 @@ public class EmailUtil {
 
             msg.setSubject(subject, "UTF-8");
 
+            //Logic for HTML body....
+
             if (htmlBody.isEmpty()) {
                 plainText.setContent(body, "text/plain");
                 altMP.addBodyPart(plainText);
@@ -61,35 +60,45 @@ public class EmailUtil {
                 altMP.addBodyPart(htmlText);
                 System.out.println("touch3");
             }
+
             msg.setContent(altMP);
 
-            //Setting recipients
-            if (!UserInput.getP2Address().equals("")) {
-                if (mailFromSpoof==true) {
-                    msg.setFrom(new InternetAddress(UserInput.getP1Address(), UserInput.getP2Address()));
-                } else {
-                    msg.addHeader("From", UserInput.getP2Address());
-                }
-            }
-            msg.setReplyTo(InternetAddress.parse(UserInput.getReplyTo(), false));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-            if (!UserInput.getMsgCCFields().equals("")) {
-                msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(UserInput.getMsgCCFields(), false));
-            }
+            setSender(msg, headerAddress, fromAddress, replyTo);
+            setRcpts(msg, toEmail, ccField);
 
             System.out.println("Message is ready");
             Transport.send(msg);
 
             System.out.println(body);
 
-            setMailStatus("Email sent successfully!!");
+            mailStatus = "Email sent successfully!!";
             System.out.println("Email Sent Successfully!!");
 
             System.out.println(htmlBody);
         }
         catch (Exception e) {
-            setMailStatus(e.getMessage());
+            mailStatus = e.getMessage();
             e.printStackTrace();
         }
+    }
+
+    private void setSender(MimeMessage msg, String headerAddress, String fromAddress, String replyTo) throws Exception {
+        //Setting recipients
+        if (!headerAddress.equals("")) {
+            if (mailFromSpoof==true) {
+                msg.setFrom(new InternetAddress(fromAddress, headerAddress));
+            } else {
+                msg.addHeader("From", headerAddress);
+            }
+        }
+        msg.setReplyTo(InternetAddress.parse(replyTo, false));
+        }
+
+    private void setRcpts(MimeMessage msg, String toEmail, String ccField) throws Exception {
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+        if (!ccField.equals("")) {
+            msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccField, false));
+        }
+
     }
 }

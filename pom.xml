@@ -54,7 +54,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
+                            <classifier>j-boot</classifier>
                             <mainClass>
                                 junbau.tools.ui.Main
                             </mainClass>

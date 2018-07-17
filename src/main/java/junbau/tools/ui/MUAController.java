@@ -1,11 +1,10 @@
 package junbau.tools.ui;
 
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.web.HTMLEditor;
-import javafx.stage.Window;
+import javafx.scene.input.*;
+import javafx.scene.web.*;
+import javafx.stage.*;
 import junbau.tools.smtp.EmailUtil;
-
 
 public class MUAController extends MUAModel {
 
@@ -41,7 +40,7 @@ public class MUAController extends MUAModel {
         } else {
             sendMail(smtpHost,usrMailFrom,usrP2,usrMsgBody,
                     usrMsgSubj,usrMsgTo, spoofS2, usrMsgCc,
-                    msgHTML);
+                    msgHTML, usrReplyTo);
             showAlert(Alert.AlertType.INFORMATION, owner, "Status", EmailUtil.getMailStatus());
         }
     }
