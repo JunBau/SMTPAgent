@@ -12,21 +12,7 @@ public class UserInput {
     private String replyTo;
     private String msgCCFields;
 
-    public UserInput() {
-
-    }
-
-    public UserInput(String p1Address, String p2Address, String msgBody, String htmlBody, String toAddress, String smtpHost, String usrSubject, String replyTo, String msgCCFields) {
-        this.p1Address = p1Address;
-        this.p2Address = p2Address;
-        this.msgBody = msgBody;
-        this.htmlBody = htmlBody;
-        this.toAddress = toAddress;
-        this.smtpHost = smtpHost;
-        this.usrSubject = usrSubject;
-        this.replyTo = replyTo;
-        this.msgCCFields = msgCCFields;
-    }
+    public UserInput() { }
 
     public String getP1Address() {
         return p1Address;
@@ -52,13 +38,9 @@ public class UserInput {
         return smtpHost;
     }
 
-    public String getUsrSubject() {
-        return usrSubject;
-    }
+    public String getUsrSubject() { return usrSubject; }
 
-    public String getReplyTo() {
-        return replyTo;
-    }
+    public String getReplyTo() { return replyTo; }
 
     public String getMsgCCFields() {
         return msgCCFields;

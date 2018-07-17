@@ -9,7 +9,7 @@ public class SMTPEmail extends UserInput implements EmailService {
     private static Properties props = System.getProperties();
     private static UserInput userData = new UserInput();
 
-    public void sendEmail() throws Exception {
+    public void sendEmail() {
         System.out.println("SimpleEmail Start");
         props.put("mail.from", userData.getP1Address());
         props.put("mail.smtp.host", userData.getSmtpHost());

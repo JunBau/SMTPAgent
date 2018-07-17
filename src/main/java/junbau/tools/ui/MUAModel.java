@@ -15,7 +15,6 @@ public class MUAModel {
                             TextArea usrMsgBody, TextField usrMsgSubj, TextField usrMsgTo,
                             CheckBox spoofS2, TextField ccField, HTMLEditor msgHTML, TextField usrReplyTo) {
 
-
         if (spoofS2.isSelected()) {
             EmailUtil.setMailFromSpoof(true);
         }

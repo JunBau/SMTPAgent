@@ -1,8 +1,5 @@
 package junbau.tools.smtp;
 
-import junbau.tools.ui.MUAController;
-import junbau.tools.ui.MUAModel;
-
 import java.util.Properties;
 
 import javax.mail.Authenticator;
