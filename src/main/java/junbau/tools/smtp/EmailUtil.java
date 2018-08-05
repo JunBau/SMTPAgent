@@ -14,19 +14,15 @@ public class EmailUtil {
 
     // Code by JunBau
 
-    private static String mailStatus;
-    private static boolean mailFromSpoof = false;
+    private String mailStatus;
 
-    public static void setMailFromSpoof(boolean mailFromSpoof) {
-        EmailUtil.mailFromSpoof = mailFromSpoof;
-    }
-
-    public static String getMailStatus() {
+    public String getMailStatus() {
         return mailStatus;
     }
 
-    public void sendEmail(String toEmail, String headerAddress, String fromAddress, String replyTo,
-                          String ccField, String subject, String body, String htmlBody, Session session) {
+    public String sendEmail(String toEmail, String headerAddress, String fromAddress, String replyTo,
+                            String ccField, String subject, String body, String htmlBody, Session session,
+                            UserInput userData) {
         try
         {
             MimeMessage msg = new MimeMessage(session);
@@ -45,7 +41,7 @@ public class EmailUtil {
 
             //Logic for HTML body....
 
-            if (htmlBody.isEmpty()) {
+            if (!htmlBody.contains("<p>")) {
                 plainText.setContent(body, "text/plain");
                 altMP.addBodyPart(plainText);
                 System.out.println("touch");
@@ -63,7 +59,7 @@ public class EmailUtil {
 
             msg.setContent(altMP);
 
-            setSender(msg, headerAddress, fromAddress, replyTo);
+            setSender(msg, headerAddress, fromAddress, replyTo, userData);
             setRcpts(msg, toEmail, ccField);
 
             System.out.println("Message is ready");
@@ -75,17 +71,19 @@ public class EmailUtil {
             System.out.println("Email Sent Successfully!!");
 
             System.out.println(htmlBody);
+            return mailStatus;
         }
         catch (Exception e) {
             mailStatus = e.getMessage();
             e.printStackTrace();
+            return e.getMessage();
         }
     }
 
-    private void setSender(MimeMessage msg, String headerAddress, String fromAddress, String replyTo) throws Exception {
+    private void setSender(MimeMessage msg, String headerAddress, String fromAddress, String replyTo, UserInput userData) throws Exception {
         //Setting recipients
         if (!headerAddress.equals("")) {
-            if (mailFromSpoof==true) {
+            if (userData.isMailFromSpoof()==true) {
                 msg.setFrom(new InternetAddress(fromAddress, headerAddress));
             } else {
                 msg.addHeader("From", headerAddress);

@@ -29,19 +29,19 @@ public class MUAController extends MUAModel {
     public CheckBox spoofS2;
     public HTMLEditor msgHTML;
 
+    //Evaluate this
 
     public void btnSend(MouseEvent mouseEvent) {
         Window owner = usrMsgSend.getScene().getWindow();
+
         if (smtpAuth.isSelected()) {
             sendTLS(smtpHost,usrMailFrom,usrP2,usrMsgBody,
                     usrMsgSubj,usrMsgTo,usrPass,smtpAuthAcc,
-                    usrReplyTo, spoofS2, usrMsgCc, msgHTML);
-            showAlert(Alert.AlertType.INFORMATION, owner, "Status", EmailUtil.getMailStatus());
+                    usrReplyTo, spoofS2, usrMsgCc, msgHTML, owner);
         } else {
             sendMail(smtpHost,usrMailFrom,usrP2,usrMsgBody,
                     usrMsgSubj,usrMsgTo, spoofS2, usrMsgCc,
-                    msgHTML, usrReplyTo);
-            showAlert(Alert.AlertType.INFORMATION, owner, "Status", EmailUtil.getMailStatus());
+                    msgHTML, usrReplyTo, owner);
         }
     }
 }

@@ -6,13 +6,12 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
-public class TLSEmail implements EmailService {
+public class TLSEmail {
 
     private EmailUtil send = new EmailUtil();
-    private static Properties props = new Properties();
-    private static UserInput userData = new UserInput();
 
-        public void tlsEmail(String password, String authAccount) throws Exception {
+        public void tlsEmail(String password, String authAccount, UserInput userData) throws Exception {
+            Properties props = new Properties();
 
             final String smtpAuth = authAccount;
             final String pass = password;
@@ -35,27 +34,12 @@ public class TLSEmail implements EmailService {
 
             Session session = Session.getInstance(props, auth);
             send.sendEmail(userData.getToAddress(), userData.getP2Address(), userData.getP1Address(), userData.getReplyTo(),
-                    userData.getMsgCCFields(), userData.getUsrSubject(), userData.getMsgBody(), userData.getHtmlBody(), session);
+                    userData.getMsgCCFields(), userData.getUsrSubject(), userData.getMsgBody(), userData.getHtmlBody(), session,
+                    userData);
         }
 
-    @Override
-    public void setMsgProps(String msg, String html, String subj, String rcpt, String cc) {
-        userData.setMsgBody(msg);
-        userData.setUsrSubject(subj);
-        userData.setToAddress(rcpt);
-        userData.setMsgCCFields(cc);
-        userData.setHtmlBody(html);
-    }
+        public String getMailStatus() {
+            return send.getMailStatus();
+        }
 
-    @Override
-    public void setSenderAddr(String fromAddr, String headerAddr, String replyTo) {
-        userData.setP1Address(fromAddr);
-        userData.setP2Address(headerAddr);
-        userData.setReplyTo(replyTo);
-    }
-
-    @Override
-    public void setSMTPhost(String host) {
-            userData.setSmtpHost(host);
-    }
 }
