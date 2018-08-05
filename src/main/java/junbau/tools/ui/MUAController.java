@@ -32,6 +32,7 @@ public class MUAController extends MUAModel {
     
     public TextField attDisplay;
     public Button attBrowse;
+    public Button clearAtt;
 
     //Evaluate this
 
@@ -68,5 +69,11 @@ public class MUAController extends MUAModel {
                 }
             }
         }
+    }
+
+    public void attClear(MouseEvent mouseEvent) {
+        getAttachments().clear();
+        getShortName().clear();
+        attDisplay.clear();
     }
 }

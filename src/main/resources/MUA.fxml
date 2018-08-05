@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="456.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="junbau.tools.ui.MUAController">
+<VBox prefHeight="513.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="junbau.tools.ui.MUAController">
    <children>
       <TabPane prefHeight="676.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -25,12 +25,12 @@
                         <TextField fx:id="usrP2" layoutX="140.0" layoutY="75.0" prefHeight="27.0" prefWidth="508.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="132.0" />
                         <CheckBox fx:id="spoofS2" layoutX="657.0" layoutY="80.0" mnemonicParsing="false" text="Spoof style 2" AnchorPane.rightAnchor="18.0" />
                         <TextField fx:id="usrReplyTo" layoutX="128.0" layoutY="108.0" prefHeight="27.0" prefWidth="635.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="17.0" />
-                        <Label layoutX="18.0" layoutY="376.0" text="Password (SMTP Auth):" />
-                        <TextField fx:id="smtpAuthAcc" layoutX="171.0" layoutY="339.0" prefHeight="27.0" prefWidth="591.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="18.0" />
-                        <PasswordField fx:id="usrPass" layoutX="170.0" layoutY="371.0" prefHeight="27.0" prefWidth="407.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="203.0" />
-                        <CheckBox fx:id="smtpAuth" layoutX="585.0" layoutY="376.0" mnemonicParsing="false" text="Use SMTP Authentication" AnchorPane.rightAnchor="14.0" />
+                        <Label layoutX="18.0" layoutY="448.0" text="Password (SMTP Auth):" />
+                        <TextField fx:id="smtpAuthAcc" layoutX="171.0" layoutY="411.0" prefHeight="27.0" prefWidth="591.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="18.0" />
+                        <PasswordField fx:id="usrPass" layoutX="170.0" layoutY="443.0" prefHeight="27.0" prefWidth="407.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="203.0" />
+                        <CheckBox fx:id="smtpAuth" layoutX="585.0" layoutY="448.0" mnemonicParsing="false" text="Use SMTP Authentication" AnchorPane.rightAnchor="14.0" />
                         <Label layoutX="14.0" layoutY="114.0" text="Reply to address:" />
-                        <Label layoutX="18.0" layoutY="344.0" text="Authentication account:" />
+                        <Label layoutX="18.0" layoutY="416.0" text="Authentication account:" />
                      </children>
                   </AnchorPane>
                </content>
@@ -42,7 +42,10 @@
                         <TextField fx:id="usrMsgTo" layoutX="83.0" layoutY="11.0" prefHeight="27.0" prefWidth="600.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="97.0" />
                         <TextField fx:id="usrMsgCc" layoutX="83.0" layoutY="43.0" prefHeight="27.0" prefWidth="600.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="97.0" />
                         <TextField fx:id="usrMsgSubj" layoutX="83.0" layoutY="75.0" prefHeight="27.0" prefWidth="600.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="97.0" />
-                        <AnchorPane layoutX="20.0" layoutY="142.0" prefHeight="266.0" prefWidth="741.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="142.0">
+                        <TextField fx:id="attDisplay" editable="false" layoutX="111.0" layoutY="108.0" prefHeight="27.0" prefWidth="572.0" />
+                        <Button fx:id="attBrowse" layoutX="689.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#clickBrowse" prefHeight="27.0" prefWidth="71.0" text="Browse" />
+                        <Button fx:id="clearAtt" layoutX="689.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#attClear" prefHeight="26.0" prefWidth="70.0" text="Clear" />
+                        <AnchorPane layoutX="20.0" layoutY="173.0" prefHeight="292.0" prefWidth="741.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="173.0">
                            <children>
                               <TabPane prefHeight="296.0" prefWidth="741.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <tabs>
@@ -64,8 +67,6 @@
                         <Label layoutX="20.0" layoutY="16.0" text="To:" />
                         <Label layoutX="20.0" layoutY="48.0" text="Cc:" />
                         <Label layoutX="20.0" layoutY="80.0" text="Subject:" />
-                        <TextField fx:id="attDisplay" editable="false" layoutX="111.0" layoutY="108.0" prefHeight="27.0" prefWidth="572.0" />
-                        <Button fx:id="attBrowse" layoutX="689.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#clickBrowse" prefHeight="27.0" prefWidth="71.0" text="Browse" />
                         <Label layoutX="21.0" layoutY="113.0" text="Attachments:" />
                      </children>
                   </AnchorPane>
