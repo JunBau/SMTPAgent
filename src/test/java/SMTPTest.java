@@ -1,9 +1,10 @@
 import junbau.tools.smtp.*;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.stubbing.Answer;
 
 import javax.mail.Session;
+
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -54,8 +55,12 @@ public class SMTPTest {
 
     @Test
     public void checkMailStatus () {
+        ArrayList attachments = new ArrayList();
+        ArrayList shortName = new ArrayList();
+
         UserInput userData = new UserInput("","", "", "",
-                "", "", "","", "", false);
+                "", "", "","", "", false,
+                attachments, shortName);
 
         SMTPEmailService test2 = mock(SMTPEmailService.class);
         test2.sendEmail(userData);

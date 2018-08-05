@@ -1,14 +1,14 @@
 package junbau.tools.smtp;
 
-import javax.mail.Message;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Date;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 
 public class EmailUtil {
 
@@ -36,6 +36,7 @@ public class EmailUtil {
             final Multipart altMP = new MimeMultipart("alternative");
             final MimeBodyPart plainText = new MimeBodyPart();
             final MimeBodyPart htmlText = new MimeBodyPart();
+            final BodyPart messageBodyPart = new MimeBodyPart();
 
             msg.setSubject(subject, "UTF-8");
 
@@ -55,6 +56,13 @@ public class EmailUtil {
                 htmlText.setContent(htmlBody, "text/html");
                 altMP.addBodyPart(htmlText);
                 System.out.println("touch3");
+            }
+
+            if (!userData.getAttachments().isEmpty()) {
+                for (int i = 0; i < userData.getAttachments().size(); i++) {
+                    addAttachment(messageBodyPart, userData.getAttachments().get(i).toString(),
+                            altMP, userData.getShortName().get(i).toString());
+                }
             }
 
             msg.setContent(altMP);
@@ -77,6 +85,19 @@ public class EmailUtil {
             mailStatus = e.getMessage();
             e.printStackTrace();
             return e.getMessage();
+        }
+    }
+
+    private void addAttachment(BodyPart messageBodyPart, String attPath, Multipart altMP, String shortName) {
+        try {
+            messageBodyPart = new MimeBodyPart();
+            String filename = attPath;
+            DataSource source = new FileDataSource(filename);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(shortName);
+            altMP.addBodyPart(messageBodyPart);
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 

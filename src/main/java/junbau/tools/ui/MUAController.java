@@ -4,7 +4,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.web.*;
 import javafx.stage.*;
-import junbau.tools.smtp.EmailUtil;
+
+import java.io.File;
 
 public class MUAController extends MUAModel {
 
@@ -28,6 +29,9 @@ public class MUAController extends MUAModel {
     public Button usrMsgSend;
     public CheckBox spoofS2;
     public HTMLEditor msgHTML;
+    
+    public TextField attDisplay;
+    public Button attBrowse;
 
     //Evaluate this
 
@@ -42,6 +46,27 @@ public class MUAController extends MUAModel {
             sendMail(smtpHost,usrMailFrom,usrP2,usrMsgBody,
                     usrMsgSubj,usrMsgTo, spoofS2, usrMsgCc,
                     msgHTML, usrReplyTo, owner);
+        }
+    }
+
+    public void clickBrowse(MouseEvent mouseEvent) {
+        Stage browseStage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        File selectedDirectory = fileChooser.showOpenDialog(browseStage);
+
+        if(selectedDirectory == null){
+            //No Directory selected
+        }else{
+            System.out.println(selectedDirectory.getAbsolutePath());
+            attDisplay.appendText(selectedDirectory.getName() + "; ");
+            getAttachments().add(selectedDirectory.getAbsolutePath());
+            getShortName().add(selectedDirectory.getName());
+
+            if (!getAttachments().isEmpty()) {
+                for (int i = 0; i < getAttachments().size(); i++) {
+                    System.out.println(getAttachments().get(i).toString());
+                }
+            }
         }
     }
 }

@@ -7,8 +7,21 @@ import junbau.tools.smtp.SMTPEmailService;
 import junbau.tools.smtp.TLSEmail;
 import junbau.tools.smtp.UserInput;
 
+import java.util.ArrayList;
+
 
 public class MUAModel {
+
+    private ArrayList attachments = new ArrayList();
+    private ArrayList shortName = new ArrayList();
+
+    public ArrayList getAttachments() {
+        return attachments;
+    }
+
+    public ArrayList getShortName() {
+        return shortName;
+    }
 
     protected void sendMail(TextField smtpHost, TextField usrMailFrom, TextField usrP2,
                             TextArea usrMsgBody, TextField usrMsgSubj, TextField usrMsgTo,
@@ -20,7 +33,7 @@ public class MUAModel {
         if (spoofS2.isSelected()) {
             UserInput userData = new UserInput(usrMailFrom.getText(),usrP2.getText(),usrMsgBody.getText(),
                     msgHTML.getHtmlText(),usrMsgTo.getText(),smtpHost.getText(),usrMsgSubj.getText(),usrReplyTo.getText(),ccField.getText(),
-                    true);
+                    true, attachments, shortName);
             try {
                 send.sendEmail(userData);
                 showAlert(Alert.AlertType.INFORMATION, owner, "Status", send.getMailStatus());
@@ -30,7 +43,7 @@ public class MUAModel {
         } else {
             UserInput userData = new UserInput(usrMailFrom.getText(),usrP2.getText(),usrMsgBody.getText(),
                     msgHTML.getHtmlText(),usrMsgTo.getText(),smtpHost.getText(),usrMsgSubj.getText(),usrReplyTo.getText(),ccField.getText(),
-                    false);
+                    false, attachments, shortName);
             try {
                 send.sendEmail(userData);
                 showAlert(Alert.AlertType.INFORMATION, owner, "Status", send.getMailStatus());
@@ -51,7 +64,7 @@ public class MUAModel {
         if (spoofS2.isSelected()) {
             UserInput userData = new UserInput(usrMailFrom.getText(),usrP2.getText(),usrMsgBody.getText(),
                     msgHTML.getHtmlText(),usrMsgTo.getText(),smtpHost.getText(),usrMsgSubj.getText(),usrReplyTo.getText(),ccField.getText(),
-                    true);
+                    true, attachments, shortName);
             try {
                 send.tlsEmail(usrPass.getText(), usrAuthAcc.getText(), userData);
                 showAlert(Alert.AlertType.INFORMATION, owner, "Status", send.getMailStatus());
@@ -62,7 +75,7 @@ public class MUAModel {
 
             UserInput userData = new UserInput(usrMailFrom.getText(), usrP2.getText(), usrMsgBody.getText(),
                     msgHTML.getHtmlText(), usrMsgTo.getText(), smtpHost.getText(), usrMsgSubj.getText(), usrReplyTo.getText(), ccField.getText(),
-                    false);
+                    false, attachments, shortName);
 
             try {
                 send.tlsEmail(usrPass.getText(), usrAuthAcc.getText(), userData);
@@ -72,6 +85,8 @@ public class MUAModel {
             }
         }
     }
+
+
 
     protected static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
